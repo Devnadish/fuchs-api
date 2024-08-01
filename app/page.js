@@ -1,31 +1,13 @@
-"use client";
-import axios from "axios";
-import { Passero_One } from "next/font/google";
+import CheckUserIsExisit from "@/createData/CheckUserIsExisit";
+import CreateeBranches from "@/createData/CreateeBranches";
+import CreateeReview from "@/createData/CreateeReview";
+import CreateeServices from "@/createData/CreateeServices";
+import CreateUsers from "@/createData/CreateUsers";
+
 import Image from "next/image";
 export const dynamic = "force-dynamic";
 
 export default function Home() {
-  const addNewUser = async () => {
-    const url = process.env.NEXT_PUBLIC_API_ENDPOINT + "/api/user/register";
-    const userData = {
-      name: "khalid nadish 1972",
-      email: "khalid@gmail.com 1972",
-      mobile: "123456789 1972",
-      password: "19721972",
-    };
-
-    const addUserToDB = await axios
-      .post(url, userData)
-      .then((response) => {
-        console.log("response", response.data);
-      })
-      .catch((error) => {
-        console.error({ error });
-      });
-
-    console.log(addUserToDB);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -34,12 +16,14 @@ export default function Home() {
             By khalid nadish
           </p>
         </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => addNewUser()}
-        >
-          Create dummy user
-        </button>
+      </div>
+      <div className="w-full flex items-center gap-2  flex-wrap">
+        <CreateUsers />
+        <CheckUserIsExisit />
+        <CreateeServices />
+        <CreateeBranches />
+        <CreateeReview />
+        {/* <Booking /> */}
       </div>
 
       <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
@@ -52,6 +36,7 @@ export default function Home() {
           priority
         />
       </div>
+      <p>Version: 1.0.0</p>
     </main>
   );
 }
